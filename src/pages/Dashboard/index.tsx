@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import income from '../../assets/income.svg';
-import outcome from '../../assets/outcome.svg';
-import total from '../../assets/total.svg';
+import incomeImg from '../../assets/income.svg';
+import outcomeImg from '../../assets/outcome.svg';
+import totalImg from '../../assets/total.svg';
 
 import api from '../../services/api';
 
@@ -47,10 +47,12 @@ const Dashboard: React.FC = () => {
         }),
       );
 
+      const { income, outcome, total } = response.data.balance;
+
       const balanceFormatted = {
-        income: formatValue(response.data.balance.income),
-        outcome: formatValue(response.data.balance.outcome),
-        total: formatValue(response.data.balance.total),
+        income: formatValue(income),
+        outcome: formatValue(outcome),
+        total: formatValue(total),
       };
 
       setTransactions(transactionsFormatted);
@@ -68,21 +70,21 @@ const Dashboard: React.FC = () => {
           <Card>
             <header>
               <p>Entradas</p>
-              <img src={income} alt="Income" />
+              <img src={incomeImg} alt="Income" />
             </header>
             <h1 data-testid="balance-income">{balance.income}</h1>
           </Card>
           <Card>
             <header>
               <p>Saídas</p>
-              <img src={outcome} alt="Outcome" />
+              <img src={outcomeImg} alt="Outcome" />
             </header>
             <h1 data-testid="balance-outcome">{balance.outcome}</h1>
           </Card>
           <Card total>
             <header>
               <p>Total</p>
-              <img src={total} alt="Total" />
+              <img src={totalImg} alt="Total" />
             </header>
             <h1 data-testid="balance-total">{balance.total}</h1>
           </Card>
